@@ -1,38 +1,131 @@
-.App {
+/* Global Styles */
+.app-container {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: navy;
+  padding: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* File Upload Box */
+.upload-box {
+  border: 2px solid navy;
+  padding: 20px;
+  margin: 20px auto;
+  width: 50%;
+  border-radius: 10px;
+  background-color: #f5faff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.file-input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
+  border: 2px dashed navy;
+  padding: 15px;
+  border-radius: 10px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.file-upload {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Button Styles */
+.button-group {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 30px; /* Increase spacing between buttons */
+  margin-top: 20px;
+  flex-wrap: wrap; /* Allow buttons to adjust layout if needed */
+}
+
+.navy-button {
+  background-color: navy;
+  color: white;
+  padding: 12px 30px; /* Increased padding for better spacing */
+  border: none;
+  border-radius: 8px; /* Slightly rounded corners */
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.navy-button:hover {
+  background-color: darkblue;
+}
+
+.navy-button:not(:last-child) {
+  margin-right: 20px; /* Adds space between buttons */
+}
+
+/* Image Display */
+.image-container {
+  margin-top: 20px;
+}
+
+.plot-image {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+  border: 2px solid navy;
+  border-radius: 10px;
+}
+
+/* Accuracy Section */
+.accuracy-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Round Button */
+.round-button {
+  background-color: navy;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.round-button:hover {
+  background-color: darkblue;
+}
+
+/* Table Styles */
+.classification-table {
+  margin-top: 20px;
+}
+
+.report-table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.report-table th, .report-table td {
+  border: 1px solid navy;
+  padding: 10px;
+  text-align: center;
+}
+
+.report-table th {
+  background-color: navy;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.report-table tr:nth-child(even) {
+  background-color: #f5faff;
 }
