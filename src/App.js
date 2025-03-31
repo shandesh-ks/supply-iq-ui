@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-import loadingGif from "./loading.gif"; // Add a rotating loading GIF in your src folder
 
 function App() {
   const [fileData, setFileData] = useState(null);
@@ -10,7 +9,7 @@ function App() {
   const [selectedImages, setSelectedImages] = useState({});
   const [showTable, setShowTable] = useState(false);
   const [showAccuracy, setShowAccuracy] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // New state for loading
+  const [loading, setLoading] = useState(false);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -33,11 +32,9 @@ function App() {
       alert("Please upload a file before submitting.");
       return;
     }
-
-    setIsLoading(true); // Start loading
-
+    setLoading(true);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}`, {
+      const response = await axios.post("https://02d5-152-58-251-142.ngrok-free.app/industrials", {
         file_name: fileName,
         file_data: fileData,
       });
@@ -46,8 +43,7 @@ function App() {
       console.error("Error uploading file:", error);
       alert("File upload failed. Please try again.");
     }
-
-    setIsLoading(false); // Stop loading after response
+    setLoading(false);
   };
 
   const handleImageSelect = (type, imageUrl) => {
@@ -61,15 +57,13 @@ function App() {
         <p className="upload-instruction">Please upload an Excel file:</p>
         <div className="file-input">
           <input type="file" accept=".xlsx" onChange={handleFileUpload} className="file-upload" />
-          <button className="navy-button" onClick={submitData} disabled={!fileData || isLoading}>
-            {isLoading ? "Uploading..." : "Upload"}
+          <button className="navy-button" onClick={submitData} disabled={!fileData || loading}>
+            Upload
           </button>
         </div>
-
-        {/* Loading Spinner - Visible when isLoading is true */}
-        {isLoading && (
+        {loading && (
           <div className="loading-container">
-            <img src={loadingGif} alt="Loading..." className="loading-gif" />
+            <img src="/spinner.gif" alt="Loading..." className="loading-spinner" />
           </div>
         )}
       </div>
