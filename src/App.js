@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import loadingGif from "./loading.gif"; // Add a rotating loading GIF in your src folder
 
 function App() {
   const [fileData, setFileData] = useState(null);
@@ -32,7 +33,9 @@ function App() {
       alert("Please upload a file before submitting.");
       return;
     }
+
     setIsLoading(true); // Start loading
+
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}`, {
         file_name: fileName,
@@ -42,9 +45,9 @@ function App() {
     } catch (error) {
       console.error("Error uploading file:", error);
       alert("File upload failed. Please try again.");
-    } finally {
-      setIsLoading(false); // Stop loading after response
     }
+
+    setIsLoading(false); // Stop loading after response
   };
 
   const handleImageSelect = (type, imageUrl) => {
@@ -59,9 +62,16 @@ function App() {
         <div className="file-input">
           <input type="file" accept=".xlsx" onChange={handleFileUpload} className="file-upload" />
           <button className="navy-button" onClick={submitData} disabled={!fileData || isLoading}>
-            {isLoading ? <img src="spinner.gif" alt="Loading..." className="spinner" /> : "Upload"}
+            {isLoading ? "Uploading..." : "Upload"}
           </button>
         </div>
+
+        {/* Loading Spinner - Visible when isLoading is true */}
+        {isLoading && (
+          <div className="loading-container">
+            <img src={loadingGif} alt="Loading..." className="loading-gif" />
+          </div>
+        )}
       </div>
 
       {responseData && (
