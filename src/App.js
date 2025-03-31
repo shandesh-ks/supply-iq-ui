@@ -47,7 +47,10 @@ function App() {
   };
 
   const handleImageSelect = (type, imageUrl) => {
-    setSelectedImages((prev) => ({ ...prev, [type]: imageUrl }));
+    setSelectedImages((prev) => ({
+      ...prev,
+      [type]: `${imageUrl}?ngrok-skip-browser-warning=true`,
+    }));
   };
 
   return (
@@ -72,20 +75,21 @@ function App() {
         <div className="response">
           <h3>Generated Plots</h3>
           <div className="vertical-button-group">
-            <button className="navy-button" onClick={() => handleImageSelect("trend", responseData.trend_plot_url)}>
-              Trend Plot
-            </button>
-            {selectedImages.trend && <img src={selectedImages.trend} alt="Trend Plot" className="plot-image" />}
-            
-            <button className="navy-button" onClick={() => handleImageSelect("heatmap", responseData.heatmap_url)}>
-              Heatmap
-            </button>
-            {selectedImages.heatmap && <img src={selectedImages.heatmap} alt="Heatmap" className="plot-image" />}
-            
-            <button className="navy-button" onClick={() => handleImageSelect("feature", responseData.feature_importance_url)}>
-              Feature Importance
-            </button>
-            {selectedImages.feature && <img src={selectedImages.feature} alt="Feature Importance" className="plot-image" />}
+          <button className="navy-button" onClick={() => handleImageSelect("trend", responseData.trend_plot_url)}>
+          Trend Plot
+          </button>
+          {selectedImages.trend && <img src={selectedImages.trend} alt="Trend Plot" className="plot-image" />}
+
+          <button className="navy-button" onClick={() => handleImageSelect("heatmap", responseData.heatmap_url)}>
+          Heatmap
+          </button>
+          {selectedImages.heatmap && <img src={selectedImages.heatmap} alt="Heatmap" className="plot-image" />}
+
+          <button className="navy-button" onClick={() => handleImageSelect("feature", responseData.feature_importance_url)}>
+          Feature Importance
+          </button>
+          {selectedImages.feature && <img src={selectedImages.feature} alt="Feature Importance" className="plot-image" />}
+
           </div>
 
           <div className="accuracy-container">
