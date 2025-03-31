@@ -9,6 +9,7 @@ function App() {
   const [selectedImages, setSelectedImages] = useState({});
   const [showTable, setShowTable] = useState(false);
   const [showAccuracy, setShowAccuracy] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // New state for loading
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -31,6 +32,7 @@ function App() {
       alert("Please upload a file before submitting.");
       return;
     }
+    setIsLoading(true); // Start loading
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}`, {
         file_name: fileName,
@@ -40,6 +42,8 @@ function App() {
     } catch (error) {
       console.error("Error uploading file:", error);
       alert("File upload failed. Please try again.");
+    } finally {
+      setIsLoading(false); // Stop loading after response
     }
   };
 
@@ -54,11 +58,12 @@ function App() {
         <p className="upload-instruction">Please upload an Excel file:</p>
         <div className="file-input">
           <input type="file" accept=".xlsx" onChange={handleFileUpload} className="file-upload" />
-          <button className="navy-button" onClick={submitData} disabled={!fileData}>
-            Upload
+          <button className="navy-button" onClick={submitData} disabled={!fileData || isLoading}>
+            {isLoading ? <img src="spinner.gif" alt="Loading..." className="spinner" /> : "Upload"}
           </button>
         </div>
       </div>
+
       {responseData && (
         <div className="response">
           <h3>Generated Plots</h3>
