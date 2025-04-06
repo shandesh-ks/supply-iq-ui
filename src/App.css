@@ -1,78 +1,120 @@
 /* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f6fc;
+  color: #002147;
+}
+
 .app-container {
-  font-family: Arial, sans-serif;
-  background-color: white;
-  color: navy;
-  padding: 20px;
+  padding: 30px;
   text-align: center;
 }
 
-/* File Upload Box */
-.upload-box {
-  border: 2px solid navy;
-  padding: 20px;
-  margin: 20px auto;
-  width: 50%;
-  border-radius: 10px;
-  background-color: #f5faff;
+/* Headings */
+h1, h2, h3 {
+  color: #002147;
+  margin-bottom: 20px;
 }
 
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  padding: 12px 16px;
+  border: 2px solid #003366;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%; /* Make it responsive */
+  max-width: 400px;
+  box-shadow: 0 2px 6px rgba(0, 33, 71, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+  border-color: #00122e;
+  outline: none;
+}
+
+/* Upload Box */
+.upload-box {
+  background: #fff;
+  padding: 2rem;
+  border: 2px solid #0a2b56;
+  border-radius: 16px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* File Input Box */
 .file-input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  border: 2px dashed navy;
-  padding: 15px;
-  border-radius: 10px;
-  width: 60%;
+  gap: 12px;
+  border: 2px dashed #002147;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
   margin: 0 auto;
+  background-color: #f0f7ff;
 }
 
-.file-upload {
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Button Styles */
+/* Button Group */
 .button-group {
   display: flex;
   justify-content: center;
-  gap: 30px; /* Increase spacing between buttons */
-  margin-top: 20px;
-  flex-wrap: wrap; /* Allow buttons to adjust layout if needed */
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 30px auto;      /* More vertical spacing */
+  padding: 10px 0;        /* Vertical padding inside */
+  max-width: 800px;       /* Keeps button rows nicely contained */
+}
+.button-group + .button-group {
+  margin-top: 20px;  /* Adds spacing between button rows */
 }
 
-.navy-button {
-  background-color: navy;
-  color: white;
-  padding: 12px 30px; /* Increased padding for better spacing */
+
+/* Buttons */
+.navy-button, .round-button {
+  background: linear-gradient(to right, #002147, #003366);
+  color: #ffffff;
+  padding: 14px 32px;
   border: none;
-  border-radius: 8px; /* Slightly rounded corners */
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 33, 71, 0.2);
 }
 
-.navy-button:hover {
-  background-color: darkblue;
+.navy-button:hover, .round-button:hover {
+  background: linear-gradient(to right, #00122e, #002b5c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 33, 71, 0.25);
 }
 
-.navy-button:not(:last-child) {
-  margin-right: 20px; /* Adds space between buttons */
+/* Rounded style for round-button */
+.round-button {
+  border-radius: 30px;
+  padding: 12px 24px;
 }
 
-/* Image Display */
+/* Image Container */
 .image-container {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .plot-image {
   display: block;
-  margin: 10px auto;
-  width: 50%;
-  border: 2px solid navy;
-  border-radius: 10px;
+  margin: 20px auto;
+  width: 90%;
+  border: 2px solid #002147;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 33, 71, 0.1);
 }
 
 /* Accuracy Section */
@@ -80,52 +122,145 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 15px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* Round Button */
-.round-button {
-  background-color: navy;
-  color: white;
-  border: none;
-  padding: 12px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 15px;
-}
-
-.round-button:hover {
-  background-color: darkblue;
-}
-
-/* Table Styles */
-.classification-table {
+  gap: 12px;
   margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #003366;
+}
+
+/* Table Section */
+.classification-table {
+  margin-top: 30px;
 }
 
 .report-table {
-  width: 80%;
+  width: 90%;
   margin: 20px auto;
   border-collapse: collapse;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 33, 71, 0.1);
 }
 
-.report-table th, .report-table td {
-  border: 1px solid navy;
-  padding: 10px;
+.report-table th,
+.report-table td {
+  border: 1px solid #003366;
+  padding: 12px;
   text-align: center;
 }
 
 .report-table th {
-  background-color: navy;
-  color: white;
+  background-color: #002147;
+  color: #ffffff;
 }
 
 .report-table tr:nth-child(even) {
-  background-color: #f5faff;
+  background-color: #eef5ff;
+}
+
+.report-table tr:hover {
+  background-color: #d6e9ff;
+  transition: background-color 0.3s ease;
+}
+
+.criteria-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.criteria-row label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.results-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 0.5rem;
+}
+
+.score-row {
+  display: flex;
+  flex-direction: column; /* Make inputs stack vertically */
+  gap: 10px;               /* Optional: Adds spacing between inputs */
+  margin-top: 10px;
+}
+
+.form-label {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #1a1a1a;
+}
+
+/* Input styles */
+.form-input {
+  flex: 2;
+  padding: 0.6rem;
+  border: 2px solid #0a2b56;
+  border-radius: 10px;
+  font-size: 1rem;
+  max-width: 300px;
+}
+
+.supplier-box {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px dashed #0a2b56;
+  border-radius: 10px;
+}
+
+
+
+.form-group {
+  margin-bottom: 2rem; /* Adjust space between input groups */
+}
+
+.risk-label {
+  color: #0a2b56;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.instruction-text {
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0.5rem 0 1rem;
+  font-style: italic;
+}
+
+.form-label.risk-label {
+  color: #0a2b56;          /* Dark blue for risk factor labels */
+  font-weight: 600;        /* Slightly bolder */
+  font-size: 1.05rem;      /* Slightly bigger font */
+}
+
+.submit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.vertical-button-group button {
+  margin-right: 2rem;
 }
