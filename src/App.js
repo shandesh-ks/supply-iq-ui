@@ -50,7 +50,7 @@ function App() {
     }
     setLoading(true);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/industrials`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/industrials`, {
         file_name: fileName,
         file_data: fileData,
       });
@@ -104,7 +104,7 @@ function App() {
 
     setBWMLoading(true);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/manual_ai`, payload);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/manual_ai`, payload);
       setBWMResponse(response.data);
     } catch (err) {
       setBWMError("❌ Submission failed. Please try again.");
