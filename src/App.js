@@ -19,7 +19,19 @@ function App() {
   const [bwmError, setBWMError] = useState("");
   const [bwmResponse, setBWMResponse] = useState(null);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
+// Inside your component
+const [selectedSuggestions, setSelectedSuggestions] = useState([]);
+const [selectedPros, setSelectedPros] = useState([]);
 
+const toggleItem = (key, selectedList, setSelectedList) => {
+  if (selectedList.includes(key)) {
+    setSelectedList(selectedList.filter(k => k !== key));
+  } else {
+    setSelectedList([...selectedList, key]);
+  }
+};
+
+  
   const labelMap = {
     D: "Delivery Delays (D)",
     Q: "Quality Issues (Q)",
@@ -300,39 +312,88 @@ function App() {
                 )}
               </div>
 
-            {bwmResponse && (
-              <div className="response">
-                <h3>Supplier Risk Scores</h3>
-                <div className="vertical-button-group">
-                  {Object.entries(bwmResponse.risk_scores).map(([name, score]) => (
-                    <button key={name} className="navy-button" onClick={() => setSelectedSupplier({ name, score })}>
-                      {name}
-                    </button>
-                  ))}
-                </div>
+              {bwmResponse && (
+  <div className="bwm-response-card">
+    <h3>📊 Supplier Risk Analysis</h3>
 
-                {selectedSupplier && (
-                  <p>
-                    <strong>{selectedSupplier.name}</strong>'s Risk Score: {selectedSupplier.score}
-                  </p>
-                )}
+    <div className="risk-buttons">
+      {Object.entries(bwmResponse.risk_scores).map(([name, score]) => (
+        <button key={name} className="navy-button" onClick={() => setSelectedSupplier({ name, score })}>
+          {name}
+        </button>
+      ))}
+    </div>
 
-                <p>
-                  ✅ Best Supplier: <strong>{bwmResponse.best_supplier}</strong>
-                </p>
-                <p>
-                  ❌ Worst Supplier: <strong>{bwmResponse.worst_supplier}</strong>
-                </p>
+    {selectedSupplier && (
+      <p className="highlight">
+        🔍 <strong>{selectedSupplier.name}</strong>'s Risk Score: <strong>{selectedSupplier.score}</strong>
+      </p>
+    )}
 
-                {bwmResponse.plot_url && (
-                  <img
-                    src={`${bwmResponse.plot_url}?ngrok-skip-browser-warning=true`}
-                    alt="Risk Plot"
-                    className="plot-image"
-                  />
-                )}
-              </div>
-            )}
+    <p className="best-supplier">✅ Best Supplier: <strong>{bwmResponse.best_supplier}</strong></p>
+    <p className="worst-supplier">❌ Worst Supplier: <strong>{bwmResponse.worst_supplier}</strong></p>
+
+    {bwmResponse.plot_url && (
+      <img
+        src={`${bwmResponse.plot_url}?ngrok-skip-browser-warning=true`}
+        alt="Risk Plot"
+        className="plot-image1"
+      />
+    )}
+
+{bwmResponse.suggestions_to_improve && (
+  <div className="info-section">
+    <h3>📌 Suggestions to Improve</h3>
+    <div className="info-button-group">
+      {Object.entries(bwmResponse.suggestions_to_improve).map(([key, value]) => (
+        <div key={key} className="info-item">
+          <button
+            className="info-button"
+            onClick={() => toggleItem(key, selectedSuggestions, setSelectedSuggestions)}
+          >
+            {key}
+          </button>
+          {selectedSuggestions.includes(key) && <p className="info-value">{value}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+
+{bwmResponse.pros_of_best_supplier && (
+  <div className="info-section">
+    <h3>🌟 Pros of Best Supplier ({bwmResponse.best_supplier})</h3>
+    <div className="info-button-group">
+      {Object.entries(bwmResponse.pros_of_best_supplier).map(([key, value]) => (
+        <div key={key} className="info-item">
+          <button
+            className="info-button"
+            onClick={() => toggleItem(key, selectedPros, setSelectedPros)}
+          >
+            {key}
+          </button>
+          {selectedPros.includes(key) && <p className="info-value">{value}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+
+    <div className="riskiest-section">
+      <h4>⚠️ Riskiest Factors</h4>
+      <ul>
+        {bwmResponse.riskiest_factors.map((factor, index) => (
+          <li key={index}>{factor}</li>
+        ))}
+      </ul>
+    </div>
+
+    <p className="thanks-message">{bwmResponse.message}</p>
+  </div>
+)}
+
           </div>
         </>
       )}
