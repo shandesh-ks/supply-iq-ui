@@ -185,7 +185,8 @@ const toggleItem = (key, selectedList, setSelectedList) => {
                 </button>
                 {showAccuracy && <span>{responseData.accuracy?.toFixed(2)}%</span>}
               </div>
-              <div style={{ marginTop: "1rem" }}></div>
+
+<div style={{ marginTop: "1rem" }}></div>
 
               <div className="round-button-container">
                 <button className="round-button" onClick={() => setShowTable(!showTable)}>
@@ -222,7 +223,17 @@ const toggleItem = (key, selectedList, setSelectedList) => {
                     </tbody>
                   </table>
                 </div>
+                
               )}
+                            <div style={{ marginTop: "1rem" }}></div>
+                            <div className="risky-factor-box">
+  <p className="risky-factor-line">
+    <span className="risky-factor-label">Most Risky Factor:</span>{' '}
+    <span className="risky-factor-value">{responseData.most_risky_factor}</span>
+  </p>
+</div>
+
+
             </div>
           )}
         </>

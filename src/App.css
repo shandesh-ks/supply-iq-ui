@@ -402,3 +402,32 @@ input[type="file"]:focus {
   text-align: center;
   box-shadow: 0 3px 8px rgba(0, 33, 71, 0.15);
 }
+.risky-factor-box {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #fff7f7;
+  border: 1px solid #cc0000;
+  border-radius: 8px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 8px rgba(204, 0, 0, 0.08);
+}
+
+.risky-factor-box h3 {
+  color: #cc0000;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.risky-factor-label {
+  font-size: 1rem;
+  color: #800000;
+  font-weight: bold;
+}
+
+.risky-factor-value {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #cc0000; /* or any color/style you prefer */
+}
